@@ -1,4 +1,4 @@
-package IVVQ.utilisateur
+package IVVQ.utilisateurs
 
 
 
@@ -8,6 +8,7 @@ import spock.lang.*
  *
  */
 class UtilisateurSpecIntegration extends Specification {
+
 
     def setup() {
     }

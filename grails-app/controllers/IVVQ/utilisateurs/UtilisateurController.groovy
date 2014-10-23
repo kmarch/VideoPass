@@ -1,4 +1,4 @@
-package IVVQ.utilisateur
+package IVVQ.utilisateurs
 
 
 
