@@ -12,6 +12,6 @@ class Utilisateur {
         id nullable:false, blank:false,  unique:true
         pseudo nullable:false, blank:false, unique:true
         mdp nullable:false, blank:false
-        dateNaissance min:new  Date().time
+        dateNaissance max:new Date().time
     }
 }
