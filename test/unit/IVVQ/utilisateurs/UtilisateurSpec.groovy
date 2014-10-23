@@ -27,17 +27,17 @@ class UtilisateurSpec extends Specification {
         when:"on déclenche la validation de l'Utilisateur"
         def estValide = utilisateur.validate()
         then:"l'Utilisateur doit être invalide"
-        estValide == false
+        !estValide
 
         where:
         idUtil  | isAdminUtil | pseudoUtil | mdpUtil | dateNaissanceUtil
-        null    | false       | null       | null    | 0
-        "007"   | false       | null       | null    | 0
-        "007"   | false       | "Methos"   | null    | 0
-        "007"   | false       | "Methos"   | "azerty"| 0
-        ""      | false       | ""         | ""      | 0
-        "007"   | false       | ""         | ""      | 0
-        "007"   | false       | "Methos"   | ""      | 0
+        null    | false       | null       | null    | new Date().time + 86400000
+        "007"   | false       | null       | null    | new Date().time + 86400000
+        "007"   | false       | "Methos"   | null    | new Date().time + 86400000
+        "007"   | false       | "Methos"   | "azerty"| new Date().time + 86400000
+        ""      | false       | ""         | ""      | new Date().time + 86400000
+        "007"   | false       | ""         | ""      | new Date().time + 86400000
+        "007"   | false       | "Methos"   | ""      | new Date().time + 86400000
     }
 
     void "test des contraintes sur les attributs des Utilisateur valides"() {
@@ -46,10 +46,10 @@ class UtilisateurSpec extends Specification {
         utilisateur.isAdmin = false
         utilisateur.pseudo = "Methos"
         utilisateur.mdp = "azerty"
-        utilisateur.dateNaissance = new Date().time + 1
+        utilisateur.dateNaissance = new Date().time - 86400000
         when:"on déclenche la validation de l'Utilisateur"
         def estValide = utilisateur.validate()
         then:"l'Utilisateur doit être valide"
-        estValide == true
+        estValide
     }
 }
