@@ -1,5 +1,7 @@
 package IVVQ.DVDs
 
+import IVVQ.social.Commentaire
+
 class DVD {
 
     String titre
@@ -8,6 +10,8 @@ class DVD {
     String id
     Enum genre
     int nbExemplaire
+
+    static hasMany = [commentaire: Commentaire]
 
     static constraints = {
         titre nullable:false, blank:false
