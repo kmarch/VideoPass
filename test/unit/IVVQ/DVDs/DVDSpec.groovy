@@ -47,5 +47,29 @@ class DVDSpec extends Specification {
     }
 
 
+    void "test des contraintes sur dvd invalide"() {
 
+        given : "un dvd valide"
+        dvd.titre = titreDVD
+        dvd.sortie = sortieDVD
+        dvd.duree = dureeDVD
+        dvd.id = idDVD
+        dvd.genre = genreDVD
+        dvd.nbExemplaire = nbExemplaireDVD
+
+        when: "on déclenche la validation du dvd"
+        def res = dvd.validate()
+
+        then: "le dvd n'a pas d'erreur de validation"
+        res == false
+        dvd.hasErrors()
+
+
+        where:
+        titreDVD | sortieDVD | dureeDVD | idDVD  | genreDVD       | nbExemplaireDVD
+        "Seven"  | 0         | 120      | null   | Genre.thriller | 2
+        "titi"   | 0         | 140      | null   | Genre.action   | 1
+        "tutu"   | 0         | 130      | null   | Genre.comedie  | 2
+
+    }
 }

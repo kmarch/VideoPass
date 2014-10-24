@@ -10,7 +10,7 @@ class DVD {
     int nbExemplaire
 
     static constraints = {
-        titre nullable:false, blank:false, unique:true
+        titre nullable:false, blank:false
         sortie nullable:false, min:new Date().time
         duree nullable:false, blank:false
         id nullable:false, blank:false, unique:true
