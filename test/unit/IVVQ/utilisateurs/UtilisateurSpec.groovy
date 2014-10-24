@@ -19,7 +19,7 @@ class UtilisateurSpec extends Specification {
 
     void "test des contraintes sur les attributs avec des Utilisateur  non valides"() {
         given:"un utilisateur invalide"
-        utilisateur.id = idUtil
+        utilisateur.idUtil = idUtil
         utilisateur.isAdmin = isAdminUtil
         utilisateur.pseudo = pseudoUtil
         utilisateur.mdp = mdpUtil
@@ -42,7 +42,7 @@ class UtilisateurSpec extends Specification {
 
     void "test des contraintes sur les attributs des Utilisateur valides"() {
         given:"un utilisateur valide"
-        utilisateur.id = "007"
+        utilisateur.idUtil = "007"
         utilisateur.isAdmin = false
         utilisateur.pseudo = "Methos"
         utilisateur.mdp = "azerty"
