@@ -12,7 +12,7 @@ class Commentaire {
 
     DVD dvd
 
-    static belongsTo = [dvd:DVD]
+    static belongsTo = [dvd:DVD , utilisateur:Utilisateur]
 
     static constraints = {
 
