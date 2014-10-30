@@ -38,10 +38,10 @@ class DVDSpec extends Specification {
         !dvd.hasErrors()
 
         where:
-        titreDVD | sortieDVD                  | dureeDVD  | genreDVD       | nbExemplaireDVD
-        "Seven"  | new Date().time  | 120       | Genre.thriller | 2
-        "titi"   | new Date().time  | 140       | Genre.action   | 3
-        "tutu"   | new Date().time  | 130       | Genre.comedie  | 2
+        titreDVD | sortieDVD       | dureeDVD | genreDVD       | nbExemplaireDVD
+        "Seven"  | new Date().time | 120      | Genre.thriller | 2
+        "titi"   | new Date().time | 140      | Genre.action   | 3
+        "tutu"   | new Date().time | 130      | Genre.comedie  | 2
 
     }
 
