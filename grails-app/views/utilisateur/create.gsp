@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+        <r:require modules="bootstrap"/>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'utilisateur.label', default: 'Utilisateur')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
