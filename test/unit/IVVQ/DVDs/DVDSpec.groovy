@@ -39,9 +39,9 @@ class DVDSpec extends Specification {
 
         where:
         titreDVD | sortieDVD                  | dureeDVD  | genreDVD       | nbExemplaireDVD
-        "Seven"  | new Date().time + 86400000 | 120       | Genre.thriller | 2
-        "titi"   | new Date().time + 86400000 | 140       | Genre.action   | 3
-        "tutu"   | new Date().time + 86400000 | 130       | Genre.comedie  | 2
+        "Seven"  | new Date().time  | 120       | Genre.thriller | 2
+        "titi"   | new Date().time  | 140       | Genre.action   | 3
+        "tutu"   | new Date().time  | 130       | Genre.comedie  | 2
 
     }
 
@@ -64,10 +64,10 @@ class DVDSpec extends Specification {
 
 
         where:
-        titreDVD | sortieDVD | dureeDVD | genreDVD       | nbExemplaireDVD
-        "Seven"  | 0         | 120      | Genre.thriller | 2
-        "titi"   | 0         | 140      | Genre.action   | 1
-        "tutu"   | 0         | 130      | Genre.comedie  | 2
+        titreDVD | sortieDVD                  | dureeDVD | genreDVD       | nbExemplaireDVD
+        null     | new Date().time + 86400000 | 120      | Genre.thriller | 2
+        null     | new Date().time + 86400000 | 140      | Genre.action   | 1
+        null     | new Date().time + 86400000 | 130      | Genre.comedie  | 2
 
     }
 }
