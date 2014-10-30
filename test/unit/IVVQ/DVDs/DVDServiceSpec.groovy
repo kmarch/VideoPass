@@ -39,6 +39,25 @@ class DVDServiceSpec extends Specification  {
         nbExemplaire == 10
     }
 
+    void "la creation d'un DVD valide avec une date de sortie renseigné crée un DVD ayant un titre, un genre, une duree, un id, une date de sortie et un nombre d'exemplaire "() {
+        given:"les informations du nouveau DVD"
+        String titre = "Fight Club"
+        long duree = 1000*60*60*2
+        Genre genre = Genre.action
+        int nbExemplaire = 10
+        long sortie = new Date().getTime() - 84000
+
+        when:"un DVD est créé"
+        DVD dvd = dvdService.ajoutDVD(titre, duree, genre,nbExemplaire, sortie)
+
+        then:"le dvd est horodaté, est attribué d'un id et comporte les attributs qu'on lui a fournit"
+        dvd.sortie.equals(sortie)
+        dvd.titre.equals("Fight Club")
+        dvd.duree == 1000*60*60*2
+        dvd.genre == Genre.action
+        nbExemplaire == 10
+    }
+
     void "la creation d'un dvd  avec un attribut non valide déclenche une exception "() {
         given:"les informations du nouveau DVD"
         String titre = "Fight Club"

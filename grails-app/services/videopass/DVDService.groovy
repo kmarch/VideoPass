@@ -17,6 +17,12 @@ class DVDService {
         dvd
     }
 
+    def ajoutDVD(String titre, long duree, Genre genre, int nb, long sortie) {
+        DVD dvd = new DVD(titre: titre, duree: duree, genre : genre, nbExemplaire: nb, sortie : sortie)
+        dvd.save()
+        dvd
+    }
+
     def getDVD(String name) {
         def dvd = DVD.findByTitre(name)
         dvd
