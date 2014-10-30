@@ -18,7 +18,6 @@ class LocationSpec extends Specification {
 
     void "test des contraintes sur les attributs des Location invalides"() {
         given:"un identifiant de DVD et un identifiant Utilisateur attribués à la Location"
-        loc.idLocation = idLocation
         loc.idUtilisateur = idUtilisateur
         loc.idFilm = idFilm
         when:"on teste si la location est valide"
@@ -26,17 +25,16 @@ class LocationSpec extends Specification {
         then:"les Location sont invalides"
         !estValide
         where:
-        idLocation | idUtilisateur | idFilm
-        null       | null          | null
-        "loc1"     | null          | null
-        "loc1"     | "007"         | null
-        ""         | ""            | ""
-        "loc1"     | "007"         | ""
+        idUtilisateur | idFilm
+        null          | null
+        null          | null
+        "007"         | null
+        ""            | ""
+        "007"         | ""
     }
 
     void "test des contraintes sur les attributs "() {
         given:"un identifiant de DVD et un identifiant Utilisateur attribués à la Location"
-        loc.idLocation = "loc1"
         loc.idUtilisateur = "007"
         loc.idFilm = "DVD01"
         when:"on teste si la location est valide"
