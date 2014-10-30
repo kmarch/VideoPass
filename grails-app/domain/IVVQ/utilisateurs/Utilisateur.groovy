@@ -7,6 +7,8 @@ class Utilisateur {
     String mdp
     long dateNaissance
 
+
+
     static constraints = {
         pseudo nullable:false, blank:false, unique:true
         mdp nullable:false, blank:false
