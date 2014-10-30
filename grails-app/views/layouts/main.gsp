@@ -17,6 +17,7 @@
 		<g:layoutHead/>
 		<g:javascript library="application"/>		
 		<r:layoutResources />
+        <r:require modules="bootstrap"/>
 	</head>
 	<body>
 		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
