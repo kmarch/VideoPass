@@ -32,7 +32,7 @@ class DVDServiceSpec extends Specification  {
         DVD dvd = dvdService.ajoutDVD(titre, duree, genre,nbExemplaire)
 
         then:"le dvd est horodaté, est attribué d'un id et comporte les attributs qu'on lui a fournit"
-        dvd.id
+        dvd.idDVD
         dvd.sortie
         dvd.titre.equals("Fight Club")
         dvd.duree == 1000*60*60*2

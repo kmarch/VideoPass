@@ -12,11 +12,7 @@ class DVDService {
 
     def ajoutDVD(String titre, long duree, Genre genre, int nb) {
         DVD dvd = new DVD(titre: titre, duree: duree, genre : genre, nbExemplaire: nb)
-        int id = 0
-        if (!DVD.all.isEmpty()) {
-            id = 1
-        }
-        dvd.id = id
+        int id = DVD.all.size()
         dvd.sortie = new Date().getTime()
         dvd.save()
         dvd
