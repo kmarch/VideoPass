@@ -26,9 +26,7 @@ class CommentaireSpec extends Specification {
     void "test des contraintes sur commentaire valide"() {
 
         given: "un commentaire valide"
-        commentaire.idCritique = idCritiqueCom
-        commentaire.idDVD = idDVDCom
-        commentaire.idUtilisateur = idUtilisateurCom
+
         commentaire.commentaire = commentaireCom
         commentaire.note = noteCom
         commentaire.date = dateCom
@@ -42,17 +40,15 @@ class CommentaireSpec extends Specification {
         !commentaire.hasErrors()
 
         where:
-        idCritiqueCom | idDVDCom | idUtilisateurCom | commentaireCom  | dateCom                    | noteCom
-        "idC1"        | "dvd1"   | "toto"           | "Trés bon film" | new Date().time + 86400000 | 18
-        "idC2"        | "dvd1"   | "toti"           | "Bon film"      | new Date().time + 86400000 | 12
+         commentaireCom  | dateCom                    | noteCom
+         "Trés bon film" | new Date().time + 86400000 | 18
+         "Bon film"      | new Date().time + 86400000 | 12
     }
 
     void "test des contraintes sur commentaire invalide"() {
 
         given: "un commentaire valide"
-        commentaire.idCritique = idCritiqueCom
-        commentaire.idDVD = idDVDCom
-        commentaire.idUtilisateur = idUtilisateurCom
+
         commentaire.commentaire = commentaireCom
         commentaire.note = noteCom
         commentaire.date = dateCom
@@ -66,9 +62,9 @@ class CommentaireSpec extends Specification {
         commentaire.hasErrors()
 
         where:
-        idCritiqueCom | idDVDCom | idUtilisateurCom | commentaireCom  | dateCom                    | noteCom
-        "idC1"        | null     | "toto"           | "Trés bon film" | new Date().time + 86400000 | 18
-        "idC2"        | null     | "toti"           | "Bon film"      | new Date().time + 86400000 | 14
+         commentaireCom  | dateCom                    | noteCom
+         null | new Date().time + 86400000 | 18
+         null      | new Date().time + 86400000 | 14
     }
 
 }

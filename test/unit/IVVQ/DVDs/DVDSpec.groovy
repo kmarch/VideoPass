@@ -27,7 +27,6 @@ class DVDSpec extends Specification {
         dvd.titre = titreDVD
         dvd.sortie = sortieDVD
         dvd.duree = dureeDVD
-        dvd.id = idDVD
         dvd.genre = genreDVD
         dvd.nbExemplaire = nbExemplaireDVD
 
@@ -39,10 +38,10 @@ class DVDSpec extends Specification {
         !dvd.hasErrors()
 
         where:
-        titreDVD | sortieDVD                  | dureeDVD | idDVD  | genreDVD       | nbExemplaireDVD
-        "Seven"  | new Date().time + 86400000 | 120      | "dvd1" | Genre.thriller | 2
-        "titi"   | new Date().time + 86400000 | 140      | "dvd2" | Genre.action   | 3
-        "tutu"   | new Date().time + 86400000 | 130      | "dvd3" | Genre.comedie  | 2
+        titreDVD | sortieDVD                  | dureeDVD  | genreDVD       | nbExemplaireDVD
+        "Seven"  | new Date().time + 86400000 | 120       | Genre.thriller | 2
+        "titi"   | new Date().time + 86400000 | 140       | Genre.action   | 3
+        "tutu"   | new Date().time + 86400000 | 130       | Genre.comedie  | 2
 
     }
 
@@ -53,7 +52,6 @@ class DVDSpec extends Specification {
         dvd.titre = titreDVD
         dvd.sortie = sortieDVD
         dvd.duree = dureeDVD
-        dvd.id = idDVD
         dvd.genre = genreDVD
         dvd.nbExemplaire = nbExemplaireDVD
 
@@ -66,10 +64,10 @@ class DVDSpec extends Specification {
 
 
         where:
-        titreDVD | sortieDVD | dureeDVD | idDVD  | genreDVD       | nbExemplaireDVD
-        "Seven"  | 0         | 120      | null   | Genre.thriller | 2
-        "titi"   | 0         | 140      | null   | Genre.action   | 1
-        "tutu"   | 0         | 130      | null   | Genre.comedie  | 2
+        titreDVD | sortieDVD | dureeDVD | genreDVD       | nbExemplaireDVD
+        "Seven"  | 0         | 120      | Genre.thriller | 2
+        "titi"   | 0         | 140      | Genre.action   | 1
+        "tutu"   | 0         | 130      | Genre.comedie  | 2
 
     }
 }

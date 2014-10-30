@@ -32,7 +32,6 @@ class DVDServiceSpec extends Specification  {
         DVD dvd = dvdService.ajoutDVD(titre, duree, genre,nbExemplaire)
 
         then:"le dvd est horodaté, est attribué d'un id et comporte les attributs qu'on lui a fournit"
-        dvd.id
         dvd.sortie
         dvd.titre.equals("Fight Club")
         dvd.duree == 1000*60*60*2
@@ -49,12 +48,6 @@ class DVDServiceSpec extends Specification  {
 
         when:"un dvd est créé avec un titre null"
         def dvd = dvdService.ajoutDVD(null,duree,genre,nbExemplaire)
-
-     //   then:"une exception est lancée"
-     //   dvd.hasErrors()
-
-     //    when:"un dvd est créé avec une durée négative"
-     //   dvd = dvdService.ajoutDVD(titre,-1,genre,nbExemplaire)
 
         then:"une exception est levée"
         dvd.hasErrors()
@@ -91,6 +84,53 @@ class DVDServiceSpec extends Specification  {
 
         then:"le dvd est ajoutée dans la liste et on obtiens alors une liste de 2 DVDs"
         dvdService.getListeDVD().size()==2
+    }
+
+    void "la méthode getDVD retourne le DVD correspondant "() {
+        given:"les informations du DVD qu'on va rechercher"
+        String titre = "Fight Club"
+        long duree = 1000*60*60*2
+        Genre genre = Genre.action
+        int nbExemplaire = 10
+
+        when:"un DVD est créé et recherché"
+        DVD dvd = dvdService.ajoutDVD(titre, duree, genre,nbExemplaire)
+        DVD dvdSearch = dvdService.getDVD(titre);
+
+        then:"le dvd est retourné"
+        dvdSearch.getTitre() == dvd.getTitre()
+        dvdSearch.getDuree() == dvd.getDuree()
+        dvdSearch.getGenre() == dvd.getGenre()
+        dvdSearch.getNbExemplaire() == dvd.getNbExemplaire()
+        dvdSearch.getSortie() == dvd.getSortie()
+    }
+
+    void "la méthode supprimerDVD supprime le DVD correspondant "() {
+        given:"les informations du DVD qu'on va supprimer et les informations d'un autre DVD"
+        String titre = "Fight Club"
+        long duree = 1000*60*60*2
+        Genre genre = Genre.action
+        int nbExemplaire = 10
+
+        String titre2 = "Intouchables"
+        long duree2 = 1000*60*60*2
+        Genre genre2 = Genre.comedie
+        int nbExemplaire2 = 15
+
+        when:"les DVDs sont créés"
+        DVD dvd = dvdService.ajoutDVD(titre, duree, genre,nbExemplaire)
+        DVD dvd2 = dvdService.ajoutDVD(titre2, duree2, genre2,nbExemplaire2)
+
+        then:"les dvds sont ajoutées dans la liste"
+        dvdService.getListeDVD().size()==2
+
+        when:"un DVD est supprimé"
+        dvdService.supprimerDVD(titre2)
+
+        then:"le dvd est supprimé de la liste"
+        dvdService.getListeDVD().size()==1
+        dvdService.getDVD(titre2) == null
+        dvdService.getDVD(titre) == dvd
     }
 }
 

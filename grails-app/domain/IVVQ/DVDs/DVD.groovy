@@ -7,7 +7,6 @@ class DVD {
     String titre
     long sortie
     int duree
-    String idDVD
     Enum genre
     int nbExemplaire
 
@@ -15,10 +14,9 @@ class DVD {
 
     static constraints = {
         titre nullable:false, blank:false
-        sortie nullable:false, min:new Date().time
+        sortie nullable:false, max:new Date().time + 86400000
         duree nullable:false, blank:false
-        idDVD nullable:false, blank:false, unique:true
-        genre nullable:false
+        genre nullable:false, blank:false
         nbExemplaire nullable:false
 
 

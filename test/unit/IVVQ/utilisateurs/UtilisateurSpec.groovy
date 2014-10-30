@@ -19,7 +19,6 @@ class UtilisateurSpec extends Specification {
 
     void "test des contraintes sur les attributs avec des Utilisateur  non valides"() {
         given:"un utilisateur invalide"
-        utilisateur.idUtil = idUtil
         utilisateur.isAdmin = isAdminUtil
         utilisateur.pseudo = pseudoUtil
         utilisateur.mdp = mdpUtil
@@ -30,19 +29,18 @@ class UtilisateurSpec extends Specification {
         !estValide
 
         where:
-        idUtil  | isAdminUtil | pseudoUtil | mdpUtil | dateNaissanceUtil
-        null    | false       | null       | null    | new Date().time + 86400000
-        "007"   | false       | null       | null    | new Date().time + 86400000
-        "007"   | false       | "Methos"   | null    | new Date().time + 86400000
-        "007"   | false       | "Methos"   | "azerty"| new Date().time + 86400000
-        ""      | false       | ""         | ""      | new Date().time + 86400000
-        "007"   | false       | ""         | ""      | new Date().time + 86400000
-        "007"   | false       | "Methos"   | ""      | new Date().time + 86400000
+        isAdminUtil | pseudoUtil | mdpUtil | dateNaissanceUtil
+        false       | null       | null    | new Date().time + 86400000
+        false       | null       | null    | new Date().time + 86400000
+        false       | "Methos"   | null    | new Date().time + 86400000
+        false       | "Methos"   | "azerty"| new Date().time + 86400000
+        false       | ""         | ""      | new Date().time + 86400000
+        false       | ""         | ""      | new Date().time + 86400000
+        false       | "Methos"   | ""      | new Date().time + 86400000
     }
 
     void "test des contraintes sur les attributs des Utilisateur valides"() {
         given:"un utilisateur valide"
-        utilisateur.idUtil = "007"
         utilisateur.isAdmin = false
         utilisateur.pseudo = "Methos"
         utilisateur.mdp = "azerty"
