@@ -12,7 +12,6 @@ class DVDService {
 
     def ajoutDVD(String titre, long duree, Genre genre, int nb) {
         DVD dvd = new DVD(titre: titre, duree: duree, genre : genre, nbExemplaire: nb)
-        int id = DVD.all.size()
         dvd.sortie = new Date().getTime()
         dvd.save()
         dvd
@@ -23,8 +22,8 @@ class DVDService {
         dvd
     }
 
-    def supprimerDVD(int id) {
-        def dvd = DVD.findById(id)
+    def supprimerDVD(String name) {
+        def dvd = DVD.findByTitre(name)
         dvd.delete()
     }
 
