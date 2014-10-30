@@ -1,5 +1,6 @@
 package videopass
 
+import IVVQ.utilisateursServices.UtilisateurService
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
