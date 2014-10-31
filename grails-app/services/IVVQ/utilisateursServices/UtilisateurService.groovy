@@ -6,43 +6,29 @@ import grails.transaction.Transactional
 
 class UtilisateurService {
 
-    List listeUtilisateurs = []
-
-    void initialiserListeUtilisateurs(Utilisateur u) {
-        listeUtilisateurs = Utilisateur.all
-    }
-
-//    def getListeUtilisateurs() {
-//        listeUtilisateurs
-//    }
+    static transactional = true
 
     //@Transactional
     def ajoutUtilisateur(Utilisateur utilisateur) {
-        listeUtilisateurs.add(utilisateur)
         utilisateur.save()
 
-        return utilisateur.pseudo
+        return utilisateur
     }
 
     //@Transactional
     boolean supprimerUtilisateur(String pseudonyme) {
         boolean estSupprime = false
-        for (int i = 0; i < listeUtilisateurs.size() && !estSupprime; i++) {
-            if (listeUtilisateurs[i].pseudo == pseudonyme) {
-                def utilisateurSupp = Utilisateur.find(listeUtilisateurs[i])
-                utilisateurSupp.delete()
-                listeUtilisateurs.remove(i)
-                estSupprime = true
-            }
+        def utilisateurSupp = Utilisateur.findByPseudo(pseudonyme)
+        if (utilisateurSupp != null) {
+            utilisateurSupp?.delete()
+            estSupprime = true
         }
+
         return estSupprime
     }
 
     def getUtilisateur(String pseudonyme) {
-        for (int i = 0; i < listeUtilisateurs.size(); i++) {
-            if (listeUtilisateurs[i].pseudo == pseudonyme)
-                return listeUtilisateurs[i]
-        }
+        Utilisateur.findByPseudo(pseudonyme)
     }
 
 }

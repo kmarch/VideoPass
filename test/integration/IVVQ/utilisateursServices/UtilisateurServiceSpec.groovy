@@ -1,7 +1,9 @@
 package IVVQ.utilisateursServices
 
 import IVVQ.utilisateurs.Utilisateur
-import spock.lang.*
+import spock.lang.Specification
+
+//import spock.lang.*
 
 /**
  *
@@ -28,22 +30,6 @@ class UtilisateurServiceSpec extends Specification {
         Utilisateur.all.each {it -> it.delete()}
     }
 
-    void "test d'initialisation de la liste"() {
-        given: "une base de données avec deux utilisateurs"
-        utilisateur1.save(flush:true, failOnError:true)
-        utilisateur2.save(flush:true, failOnError:true)
-
-        when: "on initialise la liste"
-        service.initialiserListeUtilisateurs()
-
-        then: "la liste contient les deux utilisateurs"
-        service.listeUtilisateurs.size() == 2
-        Utilisateur recupUtil1 = Utilisateur.find(utilisateur1)
-        Utilisateur recupUtil2 = Utilisateur.find(utilisateur2)
-        service.listeUtilisateurs.contains(recupUtil1)
-        service.listeUtilisateurs.contains(recupUtil2)
-    }
-
     void "test d'ajout d'un utilisateur"() {
         given: "un utilisateur"
 
@@ -54,15 +40,12 @@ class UtilisateurServiceSpec extends Specification {
         Utilisateur recupUtil1 = Utilisateur.find(utilisateur1)
         recupUtil1 != null
 
-        and: "l'utilisateur est inséré dans la liste des utilisateurs"
-        service.listeUtilisateurs.contains(utilisateur1)
-
-        and: "l'identifiant retourné est bien celui de l'utilisateur ajouté"
-        res == utilisateur1.pseudo
+        and: "l'utilisateur retourné est bien l'utilisateur ajouté"
+        res.pseudo == utilisateur1.pseudo
     }
 
-    void "test de suppression d'un utilisateur"() {
-        given: "un utilisateur dans la base de données et dans la liste"
+    void "test de suppression d'un utilisateur existant"() {
+        given: "un utilisateur dans la base de données"
         service.ajoutUtilisateur(utilisateur1)
 
         when: "on supprime l'utilisateur"
@@ -72,16 +55,30 @@ class UtilisateurServiceSpec extends Specification {
         Utilisateur recupUtil1 = Utilisateur.find(utilisateur1)
         recupUtil1 == null
 
-        and: "l'utilisateur n'est plus dans la liste d'utilisateurs"
-        !service.listeUtilisateurs.contains(utilisateur1)
-
         and: "l'utilisateur est bien supprimé"
         res == true
     }
 
+    void "test de suppression d'un utilisateur inexistant"() {
+        given: "une base de données non vide"
+        service.ajoutUtilisateur(utilisateur1)
+        def listeUtilisateurs = Utilisateur.all
+
+        when: "on supprime un utilisateur inexistant dans la base"
+        def res = service.supprimerUtilisateur(utilisateur2.pseudo)
+
+        then: "la base de données est inchangée"
+        def listeApresSupp = Utilisateur.all
+        listeApresSupp.size() == listeUtilisateurs.size()
+        listeApresSupp.contains(utilisateur1)
+
+        and: "aucun utilisateur n'est supprimé"
+        res == false
+    }
+
     void "test de récupération d'un utilisateur"() {
-        given: "un utilisateur dans la liste des utilisateurs"
-        service.listeUtilisateurs.add(utilisateur1)
+        given: "un utilisateur dans la base de données"
+        service.ajoutUtilisateur(utilisateur1)
 
         when: "on récupère l'utilisateur"
         def res = service.getUtilisateur(utilisateur1.pseudo)
