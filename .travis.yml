@@ -13,4 +13,3 @@ before_deploy:
 deploy:
   provider: heroku
   api_key: "683a3567-4907-46ef-a428-2949db6bdef6"
-  app: VideoPass
