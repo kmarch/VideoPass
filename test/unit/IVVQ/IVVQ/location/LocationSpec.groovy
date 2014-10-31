@@ -1,5 +1,6 @@
 package IVVQ.IVVQ.location
 
+import IVVQ.location.Location
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
