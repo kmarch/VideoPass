@@ -13,7 +13,7 @@ class Commentaire {
     DVD dvd
 
     static belongsTo = [dvd:DVD , utilisateur:Utilisateur]
-
+    static hasMany = [listeSousCommentaire:SousCommentaire]
     static constraints = {
 
         commentaire nullable:false, blank:false
