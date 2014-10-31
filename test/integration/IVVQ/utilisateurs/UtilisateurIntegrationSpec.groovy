@@ -1,4 +1,6 @@
 package IVVQ.utilisateurs
+
+import IVVQ.social.Commentaire
 import spock.lang.*
 
 /**
@@ -20,16 +22,16 @@ class UtilisateurIntegrationSpec extends Specification  {
     def cleanup() {
     }
 
-    void "test ajout de deux utilisateurs ayant le même pseudo"() {
-        given:"le même pseudo"
+    void "Test ajout de deux utilisateurs ayant le même pseudo"() {
+        given:"Te même pseudo"
         jumeau = new Utilisateur()
         jumeau.isAdmin = false
         jumeau.pseudo = "Methos"
         jumeau.mdp = "azerty"
         jumeau.dateNaissance = new Date().time - 86400000
-        when:"ajout du même pseudo"
+        when:"Ajout du même pseudo"
         def estBon = jumeau.save()
-        then:"ça plante"
+        then:"Ca plante"
         !estBon
     }
 }
