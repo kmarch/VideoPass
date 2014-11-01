@@ -11,6 +11,8 @@ class Utilisateur {
     long dateNaissance
     static hasMany = [listeCommentaires:Commentaire, listeSousCommentaires:SousCommentaire]
 
+
+
     static constraints = {
         pseudo nullable:false, blank:false, unique:true
         mdp nullable:false, blank:false

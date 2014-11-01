@@ -17,7 +17,7 @@ class Commentaire {
     static constraints = {
 
         commentaire nullable:false, blank:false
-        date nullable:false, min:new Date().time
+        date nullable:false
         note nullable:false
     }
 }
