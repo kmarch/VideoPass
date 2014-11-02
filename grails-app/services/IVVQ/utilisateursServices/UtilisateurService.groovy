@@ -1,7 +1,5 @@
 package IVVQ.utilisateursServices
 
-import IVVQ.social.Commentaire
-import IVVQ.social.SousCommentaire
 import IVVQ.utilisateurs.Utilisateur
 import grails.transaction.Transactional
 
@@ -31,7 +29,7 @@ class UtilisateurService {
         boolean estSupprime = false
         for (int i = 0; i < listeUtilisateurs.size() && !estSupprime; i++) {
             if (listeUtilisateurs[i].pseudo == pseudonyme) {
-                def utilisateurSupp = (listeUtilisateurs[i])
+                def utilisateurSupp = Utilisateur.find(listeUtilisateurs[i])
                 utilisateurSupp.delete()
                 listeUtilisateurs.remove(i)
                 estSupprime = true
@@ -47,13 +45,4 @@ class UtilisateurService {
         }
     }
 
-    def ajoutCommentaire(Utilisateur utilisateur, Commentaire aAjouter) {
-        utilisateur.addToListeCommentaires(aAjouter)
-        utilisateur.save()
-    }
-
-    def ajoutSousCommentaire(Utilisateur utilisateur, SousCommentaire aAjouter) {
-        utilisateur.addToListeSousCommentaires(aAjouter)
-        utilisateur.save()
-    }
 }
