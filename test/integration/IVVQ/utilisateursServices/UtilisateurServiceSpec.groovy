@@ -6,7 +6,6 @@ import IVVQ.social.SousCommentaire
 import IVVQ.utilisateurs.Utilisateur
 import spock.lang.Specification
 
-
 import videopass.Genre
 
 /**

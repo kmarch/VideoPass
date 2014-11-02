@@ -1,7 +1,6 @@
 package IVVQ.utilisateurs
 
-import IVVQ.social.Commentaire
-import spock.lang.*
+import spock.lang.Specification
 
 /**
  *
