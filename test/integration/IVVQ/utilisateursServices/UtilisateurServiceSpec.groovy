@@ -4,7 +4,7 @@ import IVVQ.DVDs.DVD
 import IVVQ.social.Commentaire
 import IVVQ.social.SousCommentaire
 import IVVQ.utilisateurs.Utilisateur
-import spock.lang.*
+import spock.lang.Specification
 import videopass.Genre
 
 /**
