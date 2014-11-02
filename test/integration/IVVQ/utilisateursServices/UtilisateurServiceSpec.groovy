@@ -30,7 +30,11 @@ class UtilisateurServiceSpec extends Specification {
     }
 
     def cleanup() {
+
     }
+
+
+
 
     void "test d'ajout d'un utilisateur"() {
         given: "un utilisateur"
@@ -113,6 +117,7 @@ class UtilisateurServiceSpec extends Specification {
         sousCommentaire.texteCommentaire = "J'aime aussi"
         sousCommentaire.utilisateur = utilisateur
         dvd.save(failOnError: true)
+
         when: "Ajoute les Commentaires et SousCommentaire"
         utilisateur.addToListeSousCommentaires(sousCommentaire)
         utilisateur.addToListeCommentaires(commentaire1)

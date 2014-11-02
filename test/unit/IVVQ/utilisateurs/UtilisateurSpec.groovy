@@ -1,7 +1,5 @@
 package IVVQ.utilisateurs
 
-import IVVQ.social.Commentaire
-import IVVQ.social.SousCommentaire
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 

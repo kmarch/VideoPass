@@ -24,7 +24,6 @@ class UtilisateurService {
         if (utilisateurSupp != null) {
             utilisateurSupp?.delete()
             estSupprime = true
-
         }
 
         return estSupprime
