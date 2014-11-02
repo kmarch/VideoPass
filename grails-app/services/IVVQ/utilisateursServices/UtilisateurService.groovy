@@ -29,7 +29,7 @@ class UtilisateurService {
         boolean estSupprime = false
         for (int i = 0; i < listeUtilisateurs.size() && !estSupprime; i++) {
             if (listeUtilisateurs[i].pseudo == pseudonyme) {
-                def utilisateurSupp = Utilisateur.find(listeUtilisateurs[i])
+                def utilisateurSupp = listeUtilisateurs[i]
                 utilisateurSupp.delete()
                 listeUtilisateurs.remove(i)
                 estSupprime = true
