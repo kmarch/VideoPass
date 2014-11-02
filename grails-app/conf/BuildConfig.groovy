@@ -83,5 +83,9 @@ grails.project.dependency.resolution = {
 
         test ":code-coverage:2.0.3-2"
         compile ":codenarc:0.22"
+
+
     }
 }
+codenarc.ruleSetFiles="file:grails-app/conf/RuleSetConfiguration.groovy"
+
