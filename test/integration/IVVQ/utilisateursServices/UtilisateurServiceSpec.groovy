@@ -147,19 +147,19 @@ class UtilisateurServiceSpec extends Specification {
         commentaire1.commentaire = "Bien"
         commentaire1.date = new Date().time + 86400000
         commentaire1.dvd = dvd
-        service.ajoutUtilisateur(utilisateur)
+        utilisateur = service.ajoutUtilisateur(utilisateur)
         sousCommentaire.commentaire = commentaire1
         sousCommentaire.dateC = new Date().time - 86400000
         sousCommentaire.texteCommentaire = "J'aime aussi"
         sousCommentaire.utilisateur = utilisateur
-        utilisateur.addToListeSousCommentaires(sousCommentaire)
-        utilisateur.addToListeCommentaires(commentaire1)
-        dvd.save()
-        service.ajoutUtilisateur(utilisateur)
+        dvd.save(flush:true,failOnError: true)
+        commentaire1.save(flush:true,failOnError: true)
+        sousCommentaire.save(flush:true, failOnError: true)
+        service.ajoutCommentaire(utilisateur, commentaire1)
+        service.ajoutSousCommentaire(utilisateur, sousCommentaire)
 
         when: "On supprime l'utilisateur"
         def estSupp = service.supprimerUtilisateur(utilisateur.pseudo)
-
         then: "On a aucun Commentaire et SousCommentaire en BD"
         SousCommentaire.all.size() == 0
         Commentaire.all.size() == 0
