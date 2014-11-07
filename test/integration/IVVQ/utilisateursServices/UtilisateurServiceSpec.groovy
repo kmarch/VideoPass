@@ -30,11 +30,8 @@ class UtilisateurServiceSpec extends Specification {
     }
 
     def cleanup() {
-
+        Utilisateur.all.each {it -> it.delete()}
     }
-
-
-
 
     void "test d'ajout d'un utilisateur"() {
         given: "un utilisateur"
@@ -116,11 +113,12 @@ class UtilisateurServiceSpec extends Specification {
         sousCommentaire.dateC = new Date().time - 86400000
         sousCommentaire.texteCommentaire = "J'aime aussi"
         sousCommentaire.utilisateur = utilisateur
-        dvd.save()
+       dvd.save(failOnError: true)
 
         when: "Ajoute les Commentaires et SousCommentaire"
         utilisateur.addToListeSousCommentaires(sousCommentaire)
         utilisateur.addToListeCommentaires(commentaire1)
+        utilisateur.save()
         service.ajoutUtilisateur(utilisateur)
 
         then: "On a 1 Commentaires et 1 SousCommentaire"
@@ -163,6 +161,5 @@ class UtilisateurServiceSpec extends Specification {
         then: "On a aucun Commentaire et SousCommentaire en BD"
         SousCommentaire.all.size() == 0
         Commentaire.all.size() == 0
-
     }
 }

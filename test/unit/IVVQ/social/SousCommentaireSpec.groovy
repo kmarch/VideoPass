@@ -33,7 +33,6 @@ class SousCommentaireSpec extends Specification {
         new Date().time+ 86400000   | null             | null                | null
         new Date().time             | ""               | null                | null
         new Date().time             | "un com"         | null                | null
-
     }
 
     void "test de contrainte de SousCommentaires valides"() {
