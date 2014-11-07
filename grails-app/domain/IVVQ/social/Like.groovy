@@ -13,4 +13,5 @@ class Like {
         utilisateur nullable: false
         commentaire nullable: false
     }
+
 }

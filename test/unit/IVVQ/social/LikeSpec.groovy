@@ -75,4 +75,5 @@ class LikeSpec extends Specification {
         true      | true     | null           | util
         true      | true     | comment        | null
     }
+    
 }
