@@ -11,8 +11,8 @@ class UtilisateurControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["pseudo"] = 'Methos'
+        params["mdp"] = "#1234"
     }
 
     void "Test the index action returns the correct model"() {
