@@ -4,6 +4,7 @@ package IVVQ.DVDs
 
 import grails.test.mixin.*
 import spock.lang.*
+import videopass.Genre
 
 @TestFor(DVDController)
 @Mock(DVD)
@@ -11,8 +12,11 @@ class DVDControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["titre"] = 'Titanic'
+        params["sortie"] = 100000
+        params["duree"] = 240
+        params["genre"] = Genre.drame
+        params["nbExemplaire"] = 10
     }
 
     void "Test the index action returns the correct model"() {
