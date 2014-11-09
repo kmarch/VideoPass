@@ -1,7 +1,7 @@
 package IVVQ.social
 
-
-
+import IVVQ.DVDs.DVD
+import IVVQ.utilisateurs.Utilisateur
 import grails.test.mixin.*
 import spock.lang.*
 
@@ -11,8 +11,11 @@ class CommentaireControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        Utilisateur utilisateur = Mock(Utilisateur)
+        DVD dvd = Mock(DVD)
+        params["commentaire"] = 'Bon film'
+        params["dvd"] = dvd
+        params["utilisateur"] = utilisateur
     }
 
     void "Test the index action returns the correct model"() {
