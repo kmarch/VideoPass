@@ -1,19 +1,21 @@
-package IVVQ.utilisateurs
+package IVVQ.social
 
-
-
-
+import IVVQ.DVDs.DVD
+import IVVQ.utilisateurs.Utilisateur
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(UtilisateurController)
-@Mock(Utilisateur)
-class UtilisateurControllerSpec extends Specification {
+@TestFor(CommentaireController)
+@Mock(Commentaire)
+class CommentaireControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
-        params["pseudo"] = 'Methos'
-        params["mdp"] = "#1234"
+        Utilisateur utilisateur = Mock(Utilisateur)
+        DVD dvd = Mock(DVD)
+        params["commentaire"] = 'Bon film'
+        params["dvd"] = dvd
+        params["utilisateur"] = utilisateur
     }
 
     void "Test the index action returns the correct model"() {
@@ -22,8 +24,8 @@ class UtilisateurControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.utilisateurInstanceList
-            model.utilisateurInstanceCount == 0
+            !model.commentaireInstanceList
+            model.commentaireInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -31,32 +33,32 @@ class UtilisateurControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.utilisateurInstance!= null
+            model.commentaireInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
 
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
-            def utilisateur = new Utilisateur()
-            utilisateur.validate()
-            controller.save(utilisateur)
+            def commentaire = new Commentaire()
+            commentaire.validate()
+            controller.save(commentaire)
 
         then:"The create view is rendered again with the correct model"
-            model.utilisateurInstance!= null
+            model.commentaireInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            utilisateur = new Utilisateur(params)
+            commentaire = new Commentaire(params)
 
-            controller.save(utilisateur)
+            controller.save(commentaire)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/utilisateur/show/1'
+            response.redirectedUrl == '/commentaire/show/1'
             controller.flash.message != null
-            Utilisateur.count() == 1
+            Commentaire.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,11 +70,11 @@ class UtilisateurControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def utilisateur = new Utilisateur(params)
-            controller.show(utilisateur)
+            def commentaire = new Commentaire(params)
+            controller.show(commentaire)
 
         then:"A model is populated containing the domain instance"
-            model.utilisateurInstance == utilisateur
+            model.commentaireInstance == commentaire
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -84,11 +86,11 @@ class UtilisateurControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def utilisateur = new Utilisateur(params)
-            controller.edit(utilisateur)
+            def commentaire = new Commentaire(params)
+            controller.edit(commentaire)
 
         then:"A model is populated containing the domain instance"
-            model.utilisateurInstance == utilisateur
+            model.commentaireInstance == commentaire
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -97,28 +99,28 @@ class UtilisateurControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/utilisateur/index'
+            response.redirectedUrl == '/commentaire/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def utilisateur = new Utilisateur()
-            utilisateur.validate()
-            controller.update(utilisateur)
+            def commentaire = new Commentaire()
+            commentaire.validate()
+            controller.update(commentaire)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.utilisateurInstance == utilisateur
+            model.commentaireInstance == commentaire
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            utilisateur = new Utilisateur(params).save(flush: true)
-            controller.update(utilisateur)
+            commentaire = new Commentaire(params).save(flush: true)
+            controller.update(commentaire)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/utilisateur/show/$utilisateur.id"
+            response.redirectedUrl == "/commentaire/show/$commentaire.id"
             flash.message != null
     }
 
@@ -128,24 +130,23 @@ class UtilisateurControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/utilisateur/index'
+            response.redirectedUrl == '/commentaire/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def utilisateur = new Utilisateur(params).save(flush: true)
+            def commentaire = new Commentaire(params).save(flush: true)
 
         then:"It exists"
-            Utilisateur.count() == 1
+            Commentaire.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(utilisateur)
+            controller.delete(commentaire)
 
         then:"The instance is deleted"
-            Utilisateur.count() == 0
-            response.redirectedUrl == '/utilisateur/index'
+            Commentaire.count() == 0
+            response.redirectedUrl == '/commentaire/index'
             flash.message != null
-
     }
 }

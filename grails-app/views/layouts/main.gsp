@@ -4,26 +4,55 @@
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="Grails"/></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
-		<g:layoutHead/>
-		<g:javascript library="application"/>		
-		<r:layoutResources />
-        <r:require modules="bootstrap"/>
-	</head>
-	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
-		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-		<r:layoutResources />
-	</body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title><g:layoutTitle default="Grails"/></title>
+    <g:layoutHead/>
+    <g:javascript library="application"/>
+    <r:layoutResources/>
+    <r:require modules="bootstrap"/>
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <div class="col-md-8 col-md-offset-2">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <p class="navbar-text">VideoPass</p>
+            <ul class="navbar-right">
+                <p class="navbar-text navbar-right"><a href="#" class="navbar-link">Register</a></p>
+
+                <p class="navbar-text navbar-right"><a href="#" class="navbar-link">Sign in</a></p>
+            </ul>
+        </div>
+    </div><!-- /.container-fluid -->
+
+</nav>
+
+<div class="row">
+    <div class="col-xs-2 col-sm-1 col-md-offset-2">
+        <div class="container-fluid">
+            <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li role="presentation"><a href="#">Mon profil</a></li>
+                <li role="presentation"><a href="#">Actualité</a></li>
+                <li role="presentation"><a href="#">Films</a></li>
+                <li role="presentation"><a href="#">Playlist</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="col-xs-4 col-sm-6">
+
+        <div class="content">
+            <g:layoutBody/>
+            <r:layoutResources/>
+        </div>
+
+    </div>
+</div>
+</body>
 </html>
