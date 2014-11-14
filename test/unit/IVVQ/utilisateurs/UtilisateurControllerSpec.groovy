@@ -2,6 +2,7 @@ package IVVQ.utilisateurs
 
 
 
+
 import grails.test.mixin.*
 import spock.lang.*
 
@@ -145,5 +146,6 @@ class UtilisateurControllerSpec extends Specification {
             Utilisateur.count() == 0
             response.redirectedUrl == '/utilisateur/index'
             flash.message != null
+
     }
 }

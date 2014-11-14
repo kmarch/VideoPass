@@ -2,6 +2,7 @@ package IVVQ.DVDs
 
 
 
+
 import grails.test.mixin.*
 import spock.lang.*
 import videopass.Genre
@@ -149,5 +150,6 @@ class DVDControllerSpec extends Specification {
             DVD.count() == 0
             response.redirectedUrl == '/DVD/index'
             flash.message != null
+
     }
 }
