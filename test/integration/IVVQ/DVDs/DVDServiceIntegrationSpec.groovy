@@ -1,24 +1,21 @@
 package IVVQ.DVDs
 
-import grails.test.mixin.Mock
-import grails.test.mixin.TestFor
-import spock.lang.Specification
+
+
+import spock.lang.*
 import videopass.DVDService
 import videopass.Genre
 
 /**
- * Created by Romain on 24/10/2014.
+ *
  */
-
-@TestFor(DVDService)
-@Mock(DVD)
-class DVDServiceSpec extends Specification  {
+class DVDServiceIntegrationSpec extends Specification {
 
     DVDService dvdService
 
     def setup() {
         dvdService = new DVDService()
-     //   dvdService.transactionManager = Mock(PlatformTransactionManager) { getTransaction(_) >> Mock(TransactionStatus) }
+        //   dvdService.transactionManager = Mock(PlatformTransactionManager) { getTransaction(_) >> Mock(TransactionStatus) }
     }
 
     void "la creation d'un DVD valide crée un DVD ayant un titre, un genre, une duree, un id, une date de sortie et un nombre d'exemplaire "() {
@@ -77,11 +74,11 @@ class DVDServiceSpec extends Specification  {
         then:"une exception est levée"
         dvd.hasErrors()
 
-      //  when:"un dvd est créée avec un nombre d'exemplaire négatif"
-      //  dvd = dvdService.ajoutDVD(titre,duree,genre,-1)
+        //  when:"un dvd est créée avec un nombre d'exemplaire négatif"
+        //  dvd = dvdService.ajoutDVD(titre,duree,genre,-1)
 
-      // then:"une exception est levée"
-      //  dvd.hasErrors()
+        // then:"une exception est levée"
+        //  dvd.hasErrors()
 
     }
 
@@ -151,5 +148,22 @@ class DVDServiceSpec extends Specification  {
         dvdService.getDVD(titre2) == null
         dvdService.getDVD(titre) == dvd
     }
-}
 
+
+    void "test obtention des nouveautés dans la bibliothèque"() {
+
+        given: "Un DVD ancien et deux récents"
+        dvdService.ajoutDVD("Mignon", 120,
+                Genre.comedie, 2, new Date().time)
+        dvdService.ajoutDVD("Interstellar", 360,
+                Genre.science_fiction, 2, new Date().time)
+        dvdService.ajoutDVD("Star Wars" , 360,
+                Genre.science_fiction, 2, 220147200)
+
+        when: "On récupère la  liste des dernier films"
+        def nouveaute = dvdService.getNouveaute().size()
+
+        then: "Deux nouveautés au compteur"
+        nouveaute == 2
+    }
+}

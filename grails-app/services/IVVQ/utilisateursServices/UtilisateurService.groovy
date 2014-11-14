@@ -13,7 +13,7 @@ class UtilisateurService {
         return utilisateur
     }
 
-    //@Transactional
+    @Transactional
     boolean supprimerUtilisateur(String pseudonyme) {
         boolean estSupprime = false
         def utilisateurSupp = Utilisateur.findByPseudo(pseudonyme)

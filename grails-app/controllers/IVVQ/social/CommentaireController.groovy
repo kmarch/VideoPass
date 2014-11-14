@@ -24,10 +24,6 @@ class CommentaireController {
 
     @Transactional
     def save(Commentaire commentaireInstance) {
-        if (commentaireInstance == null) {
-            notFound()
-            return
-        }
 
         if (commentaireInstance.hasErrors()) {
             respond commentaireInstance.errors, view: 'create'
