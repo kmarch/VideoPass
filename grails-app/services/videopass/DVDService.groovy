@@ -34,9 +34,9 @@ class DVDService {
     }
 
     def getNouveaute() {
-        def dvds = DVD.all()
-        List newDvd
-        def dateMin = new Date().getTime()-(1000*60*60*24*14)
+        def dvds = DVD.all
+        ArrayList newDvd = new ArrayList()
+        long dateMin = new Date().getTime()-(60*60*24*14)
         for (DVD dvd : dvds) {
             if (dvd.getSortie() > dateMin) {
                 newDvd.add(dvd)
