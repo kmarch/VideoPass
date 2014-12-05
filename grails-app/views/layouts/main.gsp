@@ -45,9 +45,7 @@
         </div>
     </div>
 
-    <div class="col-xs-4 col-sm-6">
 
-        <div class="content">
             <g:layoutBody/>
             <r:layoutResources/>
         </div>

@@ -86,6 +86,47 @@
 			<div id="controller-list" role="navigation">
 
 				<ul>
+                    <div class="col-xs-4 col-sm-6">
+
+                        <div class="content">
+
+                            <h3>Derniers films</h3>
+
+                            <div class="element1">
+                                <IMG SRC="images/asterix.png"/>
+                            </div>
+                            <div class="element1">
+                                <IMG SRC="images/interstellar.png"/>
+                            </div>
+                            <div class="element1">
+                                <IMG SRC="images/fury.png"/>
+                            </div>
+                            <div class="element1">
+                                <IMG SRC="images/gonegirl.png"/>
+                            </div>
+                            <div class="element1">
+                                <IMG SRC="images/hobbit.png"/>
+                            </div>
+
+                        </br></br>
+
+                            <div class="element1">
+                                <IMG SRC="images/hunger.png"/>
+                            </div>
+                            <div class="element1">
+                                <IMG SRC="images/labyrinthe.png"/>
+                            </div>
+                            <div class="element1">
+                                <IMG SRC="images/rec.png"/>
+                            </div>
+                            <div class="element1">
+                                <IMG SRC="images/samba.png"/>
+                            </div>
+                            <div class="element1">
+                                <IMG SRC="images/serena.png"/>
+                            </div>
+                        </div>
+
 					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
 						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
 					</g:each>
