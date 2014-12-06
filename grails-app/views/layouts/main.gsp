@@ -23,9 +23,17 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <p class="navbar-text">VideoPass</p>
             <ul class="navbar-right">
-                <p class="navbar-text navbar-right"><a href="#" class="navbar-link">Register</a></p>
 
-                <p class="navbar-text navbar-right"><a href="#" class="navbar-link">Sign in</a></p>
+
+                <g:if test="${!session.login}">
+                <p class="navbar-text navbar-right"><g:link controller="utilisateur" action="create">Register</g:link></p>
+
+                <p class="navbar-text navbar-right"><g:link controller="utilisateur" action="connexion">Sign in</g:link></p>
+                </g:if>
+                <g:else>
+                    <p class="navbar-text navbar-right"><g:link controller="utilisateur" action="deconnexion">Sign out</g:link></p>
+                    <p class="navbar-text navbar-right"> Bienvenue : ${session.login}</p>
+                </g:else>
             </ul>
         </div>
     </div><!-- /.container-fluid -->

@@ -32,16 +32,16 @@
 					
 				</li>
 				</g:if>
-			
+
 				<g:if test="${utilisateurInstance?.mdp}">
 				<li class="fieldcontain">
 					<span id="mdp-label" class="property-label"><g:message code="utilisateur.mdp.label" default="Mdp" /></span>
-					
+
 						<span class="property-value" aria-labelledby="mdp-label"><g:fieldValue bean="${utilisateurInstance}" field="mdp"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${utilisateurInstance?.dateNaissance}">
 				<li class="fieldcontain">
 					<span id="dateNaissance-label" class="property-label"><g:message code="utilisateur.dateNaissance.label" default="Date Naissance" /></span>
