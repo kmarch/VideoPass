@@ -123,29 +123,39 @@ class UtilisateurControllerSpec extends Specification {
     }
 
     void "Test that the delete action deletes an instance if it exists"() {
-        when:"The delete action is called for a null instance"
-            request.contentType = FORM_CONTENT_TYPE
-            controller.delete(null)
+        when: "The delete action is called for a null instance"
+        request.contentType = FORM_CONTENT_TYPE
+        controller.delete(null)
 
-        then:"A 404 is returned"
-            response.redirectedUrl == '/utilisateur/index'
-            flash.message != null
+        then: "A 404 is returned"
+        response.redirectedUrl == '/utilisateur/index'
+        flash.message != null
 
-        when:"A domain instance is created"
-            response.reset()
-            populateValidParams(params)
-            def utilisateur = new Utilisateur(params).save(flush: true)
+        when: "A domain instance is created"
+        response.reset()
+        populateValidParams(params)
+        def utilisateur = new Utilisateur(params).save(flush: true)
 
-        then:"It exists"
-            Utilisateur.count() == 1
+        then: "It exists"
+        Utilisateur.count() == 1
 
-        when:"The domain instance is passed to the delete action"
-            controller.delete(utilisateur)
+        when: "The domain instance is passed to the delete action"
+        controller.delete(utilisateur)
 
-        then:"The instance is deleted"
-            Utilisateur.count() == 0
-            response.redirectedUrl == '/utilisateur/index'
-            flash.message != null
-
+        then: "The instance is deleted"
+        Utilisateur.count() == 0
+        response.redirectedUrl == '/utilisateur/index'
+        flash.message != null
     }
+
+        void "test connexion"() {
+            when : "connexion failed"
+            params["pseudo"] = null
+            controller.connexion()
+
+            then : "on reste sur la même page"
+        }
+
+
+
 }

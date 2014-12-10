@@ -33,4 +33,24 @@ class UtilisateurIntegrationSpec extends Specification  {
         then:"Ca plante"
         !estBon
     }
+
+
+    void "Test connexion / deconnexion"(){
+        given :"un utilisateur"
+        UtilisateurController controller = new UtilisateurController();
+        controller.params.pseudo ="mathieu"
+        controller.params.mdp ="mathieu"
+
+        when: "Connexion / deconnexion"
+        def query = Utilisateur.where {
+            (pseudo == "mathieu" && mdp=="mathieu")
+        }
+        def result = query.list()
+        controller.session["login"] = result.pseudo[0]
+        controller.deconnexion()
+
+        then :"la session est vide"
+        controller.session["login"] == null
+
+    }
 }
