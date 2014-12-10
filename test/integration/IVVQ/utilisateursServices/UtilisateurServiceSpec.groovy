@@ -107,7 +107,7 @@ class UtilisateurServiceSpec extends Specification {
         dvd.sortie = new Date().time - 86400000
         commentaire1.utilisateur = utilisateur
         commentaire1.commentaire = "Bien"
-        commentaire1.date = new Date().time + 86400000
+        commentaire1.dateCommentaire = new Date().time + 86400000
         commentaire1.dvd = dvd
         sousCommentaire.commentaire = commentaire1
         sousCommentaire.dateC = new Date().time - 86400000
@@ -143,7 +143,7 @@ class UtilisateurServiceSpec extends Specification {
         dvd.sortie = new Date().time - 86400000
         commentaire1.utilisateur = utilisateur
         commentaire1.commentaire = "Bien"
-        commentaire1.date = new Date().time + 86400000
+        commentaire1.dateCommentaire = new Date().time + 86400000
         commentaire1.dvd = dvd
         utilisateur = service.ajoutUtilisateur(utilisateur)
         sousCommentaire.commentaire = commentaire1
