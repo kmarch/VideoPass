@@ -10,15 +10,8 @@
 <div class="col-xs-4 col-sm-6">
 
     <div class="content">
-		<a href="#create-commentaire" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="create-commentaire" class="content scaffold-create" role="main">
-			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
+        <div class="jumbotron">
+		<h1><g:message code="Critique" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -29,16 +22,27 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:commentaireInstance, action:'save']" >
-				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				</fieldset>
-			</g:form>
-		</div>
-        </div>
+
+<g:form url="[resource:commentaireInstance, action:'saveCom']" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="commentaire">Commentaire</label>
+                <div class="col-sm-9"><input type="text" class="form-control" placeholder="Commentaire" id="commentaire" name="commentaire" required="true"></div>
+            </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="note">Note</label>
+        <div class="col-sm-9"><input type="number" class="form-control" placeholder="Note" id="note" name="note" required="true" max="5" min="0"></div>
     </div>
+    %{--<label class="col-sm-3 control-label" for="note">Note</label>--}%
+    %{--<div class="col-sm-9"><select class="form-control" id="note" name="Note">--}%
+        %{--<option value=1 selected="selected">1</option>--}%
+        %{--<option value=2>2</option>--}%
+        %{--<option value=3>3</option>--}%
+        %{--<option value=4>4</option>--}%
+        %{--<option value=5>5</option>--}%
+    %{--</select></div>--}%
+<input class="btn btn-primary btn-lg" type="submit" value="Ajouter">
+</g:form>
+        </div>
+    </div></div>
 	</body>
 </html>

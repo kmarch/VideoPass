@@ -48,6 +48,7 @@
                     <li role="presentation"><a href="/VideoPass/utilisateur/show/${session.index}.gsp">Mon profil</a></li>
                 <li role="presentation"><a href="/VideoPass/DVD/index.gsp">Films</a></li>
                 <li role="presentation"><a href="/VideoPass/DVD/recherche.gsp">Recherche</a></li>
+                <li role="presentation"><a href="/VideoPass/DVD/create.gsp">Ajouter film</a></li>
             </ul>
 
         </div>

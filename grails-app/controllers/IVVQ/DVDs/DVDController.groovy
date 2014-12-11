@@ -22,6 +22,7 @@ class DVDController {
     }
 
     def show(DVD DVDInstance) {
+        session["idDvd"] = DVDInstance.id
         respond DVDInstance
     }
 
@@ -51,6 +52,7 @@ class DVDController {
             '*' { respond DVDInstance, [status: CREATED] }
         }
     }
+
 
     def edit(DVD DVDInstance) {
         respond DVDInstance

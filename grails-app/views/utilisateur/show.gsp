@@ -27,20 +27,19 @@
 
 				</g:if>
 
-                <g:if test="${utilisateurInstance?.listeCommentaires}">
-                    <span id="commentaire-label" class="property-label"><g:message code="utilisateur.listeCommentaires.label" default="Commentaire" /></span>
-
-                    <g:each in="${utilisateurInstance.listeCommentaires}" var="c">
-                        <span class="property-value" aria-labelledby="commentaire-label"><g:link controller="commentaire" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
-                    </g:each>
-
-                </g:if>
 			
 			</ol>
 
             <p><a class="btn btn-primary btn-lg" role="button" href="/VideoPass/utilisateur/edit/<g:fieldValue bean="${utilisateurInstance}" field="id"/>" >Editer</a></p>
 
 		</div>
-        </div></div></div>
+        </div>
+        <div class="jumbotron">
+            <h2>Vos commentaires :</h2>
+            <g:each in="${utilisateurInstance.listeCommentaires}" var="c">
+                    <h3><span class="property-value" aria-labelledby="commentaire-label"><g:link controller="commentaire" action="show" id="${c.id}">${c?.dvd.titre} : ${c?.note}/5</g:link></span></h3>
+            </g:each>
+        </div>
+        </div></div>
 	</body>
 </html>

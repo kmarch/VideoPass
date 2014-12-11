@@ -1,5 +1,7 @@
 package IVVQ.social
 
+import IVVQ.DVDs.DVD
+import IVVQ.utilisateurs.Utilisateur
 
 import static org.springframework.http.HttpStatus.OK
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -32,6 +34,23 @@ class CommentaireController {
             respond commentaireInstance.errors, view: 'create'
             return
         }
+
+        commentaireInstance.save flush: true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'commentaireInstance.label', default: 'Commentaire'), commentaireInstance.id])
+                redirect commentaireInstance
+            }
+            '*' { respond commentaireInstance, [status: CREATED] }
+        }
+    }
+
+    @Transactional
+    def saveCom(Commentaire commentaireInstance) {
+        commentaireInstance.dateCommentaire = new Date().getTime()
+        commentaireInstance.utilisateur = Utilisateur.findById(session["index"])
+        commentaireInstance.dvd = DVD.findById(session["idDvd"])
 
         commentaireInstance.save flush: true
 
