@@ -1,3 +1,4 @@
+<%@ page import="IVVQ.utilisateurs.Utilisateur" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -44,10 +45,9 @@
     <div class="col-xs-2 col-sm-1 col-md-offset-2">
         <div class="container-fluid">
             <ul class="nav nav-pills nav-stacked" role="tablist">
-                <li role="presentation"><a href="#">Mon profil</a></li>
-                <li role="presentation"><a href="#">Actualité</a></li>
-                <li role="presentation"><a href="#">Films</a></li>
-                <li role="presentation"><a href="#">Playlist</a></li>
+                    <li role="presentation"><a href="/VideoPass/utilisateur/show/${session.index}.gsp">Mon profil</a></li>
+                <li role="presentation"><a href="/VideoPass/DVD/index.gsp">Films</a></li>
+                <li role="presentation"><a href="/VideoPass/DVD/recherche.gsp">Recherche</a></li>
             </ul>
 
         </div>

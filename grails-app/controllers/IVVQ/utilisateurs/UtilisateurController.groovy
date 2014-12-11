@@ -36,6 +36,7 @@ class UtilisateurController {
                 redirect action: "connexion"
             } else {
                 session["login"] = result.pseudo[0]
+                session["index"] = result.id[0]
                 redirect(uri:'/')
             }
 
