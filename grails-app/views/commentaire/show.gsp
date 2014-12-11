@@ -2,13 +2,16 @@
 <%@ page import="IVVQ.social.Commentaire" %>
 <!DOCTYPE html>
 <html>
-	<head>
-        <r:require modules="bootstrap"/>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'commentaire.label', default: 'Commentaire')}" />
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
-	</head>
-	<body>
+<head>
+    <r:require modules="bootstrap"/>
+    <meta name="layout" content="main">
+    <g:set var="entityName" value="${message(code: 'Commentaire.label', default: 'Commentaire')}" />
+    <title><g:message code="default.list.label" args="[entityName]" /></title>
+</head>
+<body>
+<div class="col-xs-4 col-sm-6">
+
+    <div class="content">
 		<a href="#show-commentaire" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
@@ -33,11 +36,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${commentaireInstance?.date}">
+				<g:if test="${commentaireInstance?.dateCommentaire}">
 				<li class="fieldcontain">
-					<span id="date-label" class="property-label"><g:message code="commentaire.date.label" default="Date" /></span>
+					<span id="dateCommentaire-label" class="property-label"><g:message code="commentaire.dateCommentaire.label" default="Date Commentaire" /></span>
 					
-						<span class="property-value" aria-labelledby="date-label"><g:fieldValue bean="${commentaireInstance}" field="date"/></span>
+						<span class="property-value" aria-labelledby="dateCommentaire-label"><g:fieldValue bean="${commentaireInstance}" field="dateCommentaire"/></span>
 					
 				</li>
 				</g:if>
@@ -60,6 +63,26 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${commentaireInstance?.listeSousCommentaire}">
+				<li class="fieldcontain">
+					<span id="listeSousCommentaire-label" class="property-label"><g:message code="commentaire.listeSousCommentaire.label" default="Liste Sous Commentaire" /></span>
+					
+						<g:each in="${commentaireInstance.listeSousCommentaire}" var="l">
+						<span class="property-value" aria-labelledby="listeSousCommentaire-label"><g:link controller="sousCommentaire" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${commentaireInstance?.utilisateur}">
+				<li class="fieldcontain">
+					<span id="utilisateur-label" class="property-label"><g:message code="commentaire.utilisateur.label" default="Utilisateur" /></span>
+					
+						<span class="property-value" aria-labelledby="utilisateur-label"><g:link controller="utilisateur" action="show" id="${commentaireInstance?.utilisateur?.id}">${commentaireInstance?.utilisateur?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:commentaireInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
@@ -68,5 +91,7 @@
 				</fieldset>
 			</g:form>
 		</div>
+        </div>
+    </div>
 	</body>
 </html>

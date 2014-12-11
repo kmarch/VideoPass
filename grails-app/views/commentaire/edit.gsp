@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <r:require modules="bootstrap"/>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'commentaire.label', default: 'Commentaire')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>

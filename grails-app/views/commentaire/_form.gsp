@@ -11,12 +11,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: commentaireInstance, field: 'date', 'error')} required">
-	<label for="date">
-		<g:message code="commentaire.date.label" default="Date" />
+<div class="fieldcontain ${hasErrors(bean: commentaireInstance, field: 'dateCommentaire', 'error')} required">
+	<label for="dateCommentaire">
+		<g:message code="commentaire.dateCommentaire.label" default="Date Commentaire" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="date" type="number" min="1414661635607" value="${commentaireInstance.date}" required=""/>
+	<g:field name="dateCommentaire" type="number" value="${commentaireInstance.dateCommentaire}" required=""/>
 
 </div>
 
@@ -35,6 +35,33 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="dvd" name="dvd.id" from="${IVVQ.DVDs.DVD.list()}" optionKey="id" required="" value="${commentaireInstance?.dvd?.id}" class="many-to-one"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: commentaireInstance, field: 'listeSousCommentaire', 'error')} ">
+	<label for="listeSousCommentaire">
+		<g:message code="commentaire.listeSousCommentaire.label" default="Liste Sous Commentaire" />
+		
+	</label>
+	
+<ul class="one-to-many">
+<g:each in="${commentaireInstance?.listeSousCommentaire?}" var="l">
+    <li><g:link controller="sousCommentaire" action="show" id="${l.id}">${l?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="sousCommentaire" action="create" params="['commentaire.id': commentaireInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'sousCommentaire.label', default: 'SousCommentaire')])}</g:link>
+</li>
+</ul>
+
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: commentaireInstance, field: 'utilisateur', 'error')} required">
+	<label for="utilisateur">
+		<g:message code="commentaire.utilisateur.label" default="Utilisateur" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="utilisateur" name="utilisateur.id" from="${IVVQ.utilisateurs.Utilisateur.list()}" optionKey="id" required="" value="${commentaireInstance?.utilisateur?.id}" class="many-to-one"/>
 
 </div>
 
