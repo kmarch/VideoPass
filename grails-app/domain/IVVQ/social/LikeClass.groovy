@@ -2,7 +2,7 @@ package IVVQ.social
 
 import IVVQ.utilisateurs.Utilisateur
 
-class Like {
+class LikeClass {
 
     boolean isLike
     boolean isSet = true

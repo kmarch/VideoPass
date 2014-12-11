@@ -9,10 +9,10 @@ import spock.lang.Unroll
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(Like)
+@TestFor(LikeClass)
 class LikeSpec extends Specification {
 
-    Like likeValide
+    LikeClass likeValide
     @Shared
     Utilisateur util
     @Shared
@@ -22,7 +22,7 @@ class LikeSpec extends Specification {
         util = Mock(Utilisateur)
         comment = Mock(Commentaire)
 
-        likeValide = new Like()
+        likeValide = new LikeClass()
         likeValide.isLike = true
         likeValide.utilisateur = util
         likeValide.commentaire = comment
@@ -57,7 +57,7 @@ class LikeSpec extends Specification {
     @Unroll
     void "test des contraintes sur Like invalide"() {
         given: "un like invalide"
-        Like likeInvalide = new Like()
+        LikeClass likeInvalide = new LikeClass()
         likeInvalide.isLike = isLikeVal
         likeInvalide.isSet = isSetVal
         likeInvalide.commentaire = commentaireVal
