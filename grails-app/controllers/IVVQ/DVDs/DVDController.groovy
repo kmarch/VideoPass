@@ -17,6 +17,10 @@ class DVDController {
         respond DVD.list(params), model: [DVDInstanceCount: DVD.count()]
     }
 
+    def recherche(){
+
+    }
+
     def show(DVD DVDInstance) {
         respond DVDInstance
     }

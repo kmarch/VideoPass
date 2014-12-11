@@ -5,7 +5,6 @@ package IVVQ.utilisateurs
 
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
-import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
 import spock.lang.Specification
 
 @TestFor(UtilisateurController)
