@@ -22,7 +22,9 @@ class DVDController {
     }
 
     def show(DVD DVDInstance) {
-        session["idDvd"] = DVDInstance.id
+        if (DVDInstance != null) {
+            session["idDvd"] = DVDInstance.id
+        }
         respond DVDInstance
     }
 
