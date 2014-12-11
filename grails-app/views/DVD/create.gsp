@@ -34,6 +34,8 @@
                         <label class="col-sm-3 control-label" for="duree">Duree</label>
                         <div class="col-sm-9"><input type="number" class="form-control" placeholder="Duree" id="duree" name="duree" required="true"></div>
                     </div>
+                    <label class="col-sm-3 control-label" for="genre">Genre</label>
+                    <div class="col-sm-9">
                         <select class="form-control" id="genre" name="genre">
                             <option value="science_fiction" selected="selected">Science Fiction</option>
                             <option value="drame">Drame</option>
@@ -44,6 +46,7 @@
                             <option value="action">Action</option>
                             <option value="documentaire">Documentaire</option>
                         </select>
+                        </div>
                     </div>
                     </br>
                     <input class="btn btn-primary btn-lg" type="submit" value="Creer">

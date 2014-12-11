@@ -45,10 +45,18 @@
     <div class="col-xs-2 col-sm-1 col-md-offset-2">
         <div class="container-fluid">
             <ul class="nav nav-pills nav-stacked" role="tablist">
-                    <li role="presentation"><a href="/VideoPass/utilisateur/show/${session.index}.gsp">Mon profil</a></li>
+<g:if test="${session.login}">
+                <li role="presentation"><a href="/VideoPass/utilisateur/show/${session.index}.gsp">Mon profil</a></li>
                 <li role="presentation"><a href="/VideoPass/DVD/index.gsp">Films</a></li>
                 <li role="presentation"><a href="/VideoPass/DVD/recherche.gsp">Recherche</a></li>
                 <li role="presentation"><a href="/VideoPass/DVD/create.gsp">Ajouter film</a></li>
+</g:if>
+<g:else>
+    <li role="presentation"><a href="/VideoPass/utilisateur/connexion.gsp">Mon profil</a></li>
+    <li role="presentation"><a href="/VideoPass/utilisateur/connexion.gsp">Films</a></li>
+    <li role="presentation"><a href="/VideoPass/utilisateur/connexion.gsp">Recherche</a></li>
+    <li role="presentation"><a href="/VideoPass/utilisateur/connexion.gsp">Ajouter film</a></li>
+</g:else>
             </ul>
 
         </div>

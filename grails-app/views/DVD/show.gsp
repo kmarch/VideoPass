@@ -36,7 +36,7 @@
 				<g:if test="${DVDInstance?.duree}">
 					<span id="duree-label" class="property-label"><g:message code="DVD.duree.label" default="Duree :" /></span>
 					
-						<span class="property-value" aria-labelledby="duree-label"><g:fieldValue bean="${DVDInstance}" field="duree"/></span></br>
+						<span class="property-value" aria-labelledby="duree-label"><g:fieldValue bean="${DVDInstance}" field="duree"/></span> min</br>
 
 				</g:if>
 			

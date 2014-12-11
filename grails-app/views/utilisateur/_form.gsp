@@ -29,12 +29,6 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: utilisateurInstance, field: 'isAdmin', 'error')} ">
-	<label for="isAdmin">
-		<g:message code="utilisateur.isAdmin.label" default="Is Admin" />
-		
-	</label>
-	<g:checkBox name="isAdmin" value="${utilisateurInstance?.isAdmin}" />
 
 </div>
 
