@@ -1,13 +1,14 @@
 package IVVQ.DVDs
 
 import IVVQ.social.Commentaire
+import videopass.Genre
 
 class DVD {
 
     String titre
     long sortie
     int duree
-    Enum genre
+    Genre genre
     int nbExemplaire
 
     static hasMany = [commentaire: Commentaire]

@@ -51,7 +51,7 @@ class CommentaireSpec extends Specification {
 
         commentaire.commentaire = commentaireCom
         commentaire.note = noteCom
-        commentaire.date = dateCom
+        commentaire.dateCommentaire = dateCom
         commentaire.dvd = dvd
 
         when: "on déclenche la validation de l'option"

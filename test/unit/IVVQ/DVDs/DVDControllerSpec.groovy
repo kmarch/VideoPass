@@ -1,10 +1,8 @@
 package IVVQ.DVDs
 
-
-
-
-import grails.test.mixin.*
-import spock.lang.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
+import spock.lang.Specification
 import videopass.Genre
 
 @TestFor(DVDController)
@@ -36,6 +34,14 @@ class DVDControllerSpec extends Specification {
 
         then:"The model is correctly created"
             model.DVDInstance!= null
+    }
+
+    void "Test the save action without any instance"() {
+        when:"The save action is executed without any instance"
+        controller.save(null)
+
+        then:"A 404 error is returned"
+        response.status == 404
     }
 
     void "Test the save action correctly persists an instance"() {

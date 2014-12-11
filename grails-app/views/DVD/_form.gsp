@@ -34,7 +34,7 @@
 		<g:message code="DVD.genre.label" default="Genre" />
 		<span class="required-indicator">*</span>
 	</label>
-	
+    <g:field name="genre" type="Genre" value="${DVDInstance.genre}" required=""/>
 
 </div>
 

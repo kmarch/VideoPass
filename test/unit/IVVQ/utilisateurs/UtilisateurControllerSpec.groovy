@@ -3,8 +3,10 @@ package IVVQ.utilisateurs
 
 
 
-import grails.test.mixin.*
-import spock.lang.*
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
+import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
+import spock.lang.Specification
 
 @TestFor(UtilisateurController)
 @Mock(Utilisateur)
@@ -14,6 +16,36 @@ class UtilisateurControllerSpec extends Specification {
         assert params != null
         params["pseudo"] = 'Methos'
         params["mdp"] = "#1234"
+    }
+
+    void "Test deconnexion action"() {
+        when:"The deconnexion action is executed"
+        controller.deconnexion()
+
+        then:"The user is redirected to the connexion page"
+        response.redirectedUrl == "/utilisateur/connexion"
+    }
+
+    void "Test connexion action with inexisting user"() {
+        when:"The connexion action is executed with a bad user/password combination"
+        populateValidParams(params)
+        controller.connexion()
+
+        then:"The user is redirected to the connexion page"
+        response.redirectedUrl == "/utilisateur/connexion"
+    }
+
+    void "Test connexion action with correct user"() {
+        when:"The connexion action is executed with a correct user/password combination"
+        populateValidParams(params)
+        new Utilisateur(params).save(flush: true)
+        controller.connexion()
+
+        then:"Pseudo is stored into session"
+        session != null
+
+        and:"The user is redirected to home page"
+        response.redirectedUrl == "/"
     }
 
     void "Test the index action returns the correct model"() {
@@ -32,6 +64,14 @@ class UtilisateurControllerSpec extends Specification {
 
         then:"The model is correctly created"
             model.utilisateurInstance!= null
+    }
+
+    void "Test the save action without any instance"() {
+        when:"The save action is executed without any instance"
+        controller.save(null)
+
+        then:"A 404 error is returned"
+        response.status == 404
     }
 
     void "Test the save action correctly persists an instance"() {
@@ -123,29 +163,39 @@ class UtilisateurControllerSpec extends Specification {
     }
 
     void "Test that the delete action deletes an instance if it exists"() {
-        when:"The delete action is called for a null instance"
-            request.contentType = FORM_CONTENT_TYPE
-            controller.delete(null)
+        when: "The delete action is called for a null instance"
+        request.contentType = FORM_CONTENT_TYPE
+        controller.delete(null)
 
-        then:"A 404 is returned"
-            response.redirectedUrl == '/utilisateur/index'
-            flash.message != null
+        then: "A 404 is returned"
+        response.redirectedUrl == '/utilisateur/index'
+        flash.message != null
 
-        when:"A domain instance is created"
-            response.reset()
-            populateValidParams(params)
-            def utilisateur = new Utilisateur(params).save(flush: true)
+        when: "A domain instance is created"
+        response.reset()
+        populateValidParams(params)
+        def utilisateur = new Utilisateur(params).save(flush: true)
 
-        then:"It exists"
-            Utilisateur.count() == 1
+        then: "It exists"
+        Utilisateur.count() == 1
 
-        when:"The domain instance is passed to the delete action"
-            controller.delete(utilisateur)
+        when: "The domain instance is passed to the delete action"
+        controller.delete(utilisateur)
 
-        then:"The instance is deleted"
-            Utilisateur.count() == 0
-            response.redirectedUrl == '/utilisateur/index'
-            flash.message != null
-
+        then: "The instance is deleted"
+        Utilisateur.count() == 0
+        response.redirectedUrl == '/utilisateur/index'
+        flash.message != null
     }
+
+        void "test connexion"() {
+            when : "connexion failed"
+            params["pseudo"] = null
+            controller.connexion()
+
+            then : "on reste sur la même page"
+        }
+
+
+
 }

@@ -1,8 +1,6 @@
 package IVVQ.DVDs
 
-
-
-import spock.lang.*
+import spock.lang.Specification
 import videopass.DVDService
 import videopass.Genre
 

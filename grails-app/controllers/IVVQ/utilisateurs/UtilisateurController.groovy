@@ -1,7 +1,10 @@
 package IVVQ.utilisateurs
 
-
-import static org.springframework.http.HttpStatus.*
+import static org.springframework.http.HttpStatus.OK
+import static org.springframework.http.HttpStatus.NOT_FOUND
+import static org.springframework.http.HttpStatus.NO_CONTENT
+import static org.springframework.http.HttpStatus.CREATED
+import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
@@ -19,7 +22,32 @@ class UtilisateurController {
     }
 
     def create() {
+
+        
         respond new Utilisateur(params)
+    }
+    @Transactional
+    def connexion() {
+        if (params.pseudo != null) {
+
+        def query = Utilisateur.where { pseudo == params.pseudo && mdp == params.mdp }
+        def result = query.list()
+            if (result.size() == 0) {
+                redirect action: "connexion"
+            } else {
+                session["login"] = result.pseudo[0]
+                session["index"] = result.id[0]
+                redirect(uri:'/')
+            }
+
+        }
+    }
+
+    @Transactional
+    def deconnexion(){
+        session.invalidate()
+        GrailsWebRequest.lookup(request).session = null
+        redirect action : "connexion"
     }
 
     @Transactional

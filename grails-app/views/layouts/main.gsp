@@ -1,3 +1,4 @@
+<%@ page import="IVVQ.utilisateurs.Utilisateur" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -23,9 +24,17 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <p class="navbar-text">VideoPass</p>
             <ul class="navbar-right">
-                <p class="navbar-text navbar-right"><a href="#" class="navbar-link">Register</a></p>
 
-                <p class="navbar-text navbar-right"><a href="#" class="navbar-link">Sign in</a></p>
+
+                <g:if test="${!session.login}">
+                <p class="navbar-text navbar-right"><g:link controller="utilisateur" action="create">Register</g:link></p>
+
+                <p class="navbar-text navbar-right"><g:link controller="utilisateur" action="connexion">Sign in</g:link></p>
+                </g:if>
+                <g:else>
+                    <p class="navbar-text navbar-right"><g:link controller="utilisateur" action="deconnexion">Sign out</g:link></p>
+                    <p class="navbar-text navbar-right"> Bienvenue : ${session.login}</p>
+                </g:else>
             </ul>
         </div>
     </div><!-- /.container-fluid -->
@@ -36,18 +45,15 @@
     <div class="col-xs-2 col-sm-1 col-md-offset-2">
         <div class="container-fluid">
             <ul class="nav nav-pills nav-stacked" role="tablist">
-                <li role="presentation"><a href="#">Mon profil</a></li>
-                <li role="presentation"><a href="#">Actualité</a></li>
-                <li role="presentation"><a href="#">Films</a></li>
-                <li role="presentation"><a href="#">Playlist</a></li>
+                    <li role="presentation"><a href="/VideoPass/utilisateur/show/${session.index}.gsp">Mon profil</a></li>
+                <li role="presentation"><a href="/VideoPass/DVD/index.gsp">Films</a></li>
+                <li role="presentation"><a href="/VideoPass/DVD/recherche.gsp">Recherche</a></li>
             </ul>
 
         </div>
     </div>
 
-    <div class="col-xs-4 col-sm-6">
 
-        <div class="content">
             <g:layoutBody/>
             <r:layoutResources/>
         </div>

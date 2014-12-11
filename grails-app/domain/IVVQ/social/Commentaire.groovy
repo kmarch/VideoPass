@@ -7,7 +7,7 @@ class Commentaire {
 
 
     String commentaire
-    long date
+    long dateCommentaire
     int note
 
     DVD dvd
@@ -17,7 +17,7 @@ class Commentaire {
     static constraints = {
 
         commentaire nullable:false, blank:false
-        date nullable:false
+        dateCommentaire nullable:false
         note nullable:false
     }
 }

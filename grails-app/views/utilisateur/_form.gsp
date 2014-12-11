@@ -16,7 +16,7 @@
 		<g:message code="utilisateur.mdp.label" default="Mdp" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="mdp" required="" value="${utilisateurInstance?.mdp}"/>
+	<g:passwordField name="mdp" required="" value="${utilisateurInstance?.mdp}"/>
 
 </div>
 
@@ -25,7 +25,7 @@
 		<g:message code="utilisateur.dateNaissance.label" default="Date Naissance" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="dateNaissance" type="number" max="1414661636757" value="${utilisateurInstance.dateNaissance}" required=""/>
+	<g:field name="dateNaissance" type="date" max="1414661636757" value="${utilisateurInstance?.dateNaissance}" required=""/>
 
 </div>
 

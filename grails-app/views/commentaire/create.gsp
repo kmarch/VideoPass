@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<head>
-        <r:require modules="bootstrap"/>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'commentaire.label', default: 'Commentaire')}" />
-		<title><g:message code="default.create.label" args="[entityName]" /></title>
-	</head>
-	<body>
+<head>
+    <r:require modules="bootstrap"/>
+    <meta name="layout" content="main">
+    <g:set var="entityName" value="${message(code: 'Commentaire.label', default: 'Commentaire')}" />
+    <title><g:message code="default.list.label" args="[entityName]" /></title>
+</head>
+<body>
+<div class="col-xs-4 col-sm-6">
+
+    <div class="content">
 		<a href="#create-commentaire" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
@@ -35,5 +38,7 @@
 				</fieldset>
 			</g:form>
 		</div>
+        </div>
+    </div>
 	</body>
 </html>
